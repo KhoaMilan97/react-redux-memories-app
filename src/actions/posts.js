@@ -3,14 +3,35 @@ import * as api from '../api';
 import * as actionTypes from '../constants/actionTypes';
 
 // Actions Creatros
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const res = await api.fetchPosts();
+    dispatch({ type: actionTypes.START_LOADING });
+
+    const { data } = await api.fetchPosts(page);
 
     dispatch({
       type: actionTypes.FETCH_POSTS,
-      payload: res.data,
+      payload: data,
     });
+
+    dispatch({ type: actionTypes.END_LOADING });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+  try {
+    dispatch({ type: actionTypes.START_LOADING });
+    const {
+      data: { data },
+    } = await api.fetchPostsBySearch(searchQuery);
+
+    dispatch({
+      type: actionTypes.FETCH_BY_SEARCH,
+      payload: data,
+    });
+    dispatch({ type: actionTypes.END_LOADING });
   } catch (error) {
     console.log(error.message);
   }
@@ -18,12 +39,14 @@ export const getPosts = () => async (dispatch) => {
 
 export const createPost = (post) => async (dispatch) => {
   try {
+    dispatch({ type: actionTypes.START_LOADING });
     const { data } = await api.createPost(post);
 
     dispatch({
       type: actionTypes.CREATE_POST,
       payload: data,
     });
+    dispatch({ type: actionTypes.END_LOADING });
   } catch (error) {
     console.log(error);
   }

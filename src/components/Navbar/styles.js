@@ -9,24 +9,39 @@ export default makeStyles((theme) => ({
   heading: {
     color: 'rgba(0,183,255, 1)',
     textDecoration: 'none',
+    fontSize: '2em',
+    fontWeight: 300,
   },
   image: {
-    marginLeft: '15px',
+    marginLeft: '10px',
+    marginTop: '5px',
   },
-
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
     width: '400px',
+    [theme.breakpoints.down('sm')]: {
+      width: 'auto',
+    },
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '400px',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      width: 'auto',
+      marginTop: 20,
+      justifyContent: 'center',
+    },
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
+    textAlign: 'center',
+  },
+  logout: {
+    marginLeft: '20px',
   },
   brandContainer: {
     display: 'flex',

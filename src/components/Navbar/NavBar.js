@@ -5,7 +5,8 @@ import decode from 'jwt-decode';
 
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@mui/material';
 
-import memories from '../../images/memories.png';
+import memoriesLogo from '../../images/memoriesLogo.png';
+import memoriesText from '../../images/memoriesText.png';
 
 import useStyles from './styles';
 
@@ -40,23 +41,20 @@ function Navbar() {
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Toolbar>
-        <div className={classes.brandContainer}>
-          <Typography
-            component={Link}
-            to="/"
-            className={classes.heading}
-            variant="h2"
-            align="center"
-          >
-            Memories
-          </Typography>
+        <Link to="/" className={classes.brandContainer}>
           <img
             className={classes.image}
-            src={memories}
-            alt="memories"
-            height="60"
+            src={memoriesText}
+            alt="icon"
+            height="45px"
           />
-        </div>
+          <img
+            className={classes.image}
+            src={memoriesLogo}
+            alt="memories"
+            height="40px"
+          />
+        </Link>
         <div className={classes.toolbar}>
           {user ? (
             <div className={classes.profile}>
